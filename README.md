@@ -2,7 +2,8 @@
 
 
 `sudo apt install libtidy-dev`
-`sudo python -m pip install --ignore-installed -r requirements.txt`
+
+`python -m pip install --ignore-installed -r requirements.txt`
 
 
 
