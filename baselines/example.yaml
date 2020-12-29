@@ -1,0 +1,4 @@
+baselines: # baseline file can be specified in a yaml file
+  - filepath: "example.html"
+  - filepath: "somefolder/example.html" # slashes will be normalized
+  - filepath: "somefolder\\example2.html"

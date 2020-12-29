@@ -1,0 +1,9 @@
+baselines:
+  - # use the baseline file filepath when responding to HTTP requests to this host at this path
+    host: "abc.com"
+    path: "/" # HTTP path
+    filepath: "example2.html" # filesystem path relative to the directory containing this yaml file
+  -
+    # if host is not present, will default to any host
+    # if path is not present, will default to filepath
+    filepath: "example2.js" # required

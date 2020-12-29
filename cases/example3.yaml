@@ -1,0 +1,4 @@
+include:
+  - "example.yaml" # filesystem path relative to the directory containing this yaml file
+  - "example2.yaml"
+# No other yaml content should be present when "include"-ing other yaml files

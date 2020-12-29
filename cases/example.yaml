@@ -1,0 +1,2 @@
+baselines: # baseline file can be specified in a yaml file
+  - casename: "example-middle-011"

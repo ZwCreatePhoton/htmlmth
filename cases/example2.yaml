@@ -1,0 +1,15 @@
+baselines:
+  - # use the case specified by casename when responding to HTTP requests to this host at this path
+    host: "abc.com"
+    path: "/" # HTTP path
+    casename: "example-null-001" # case name
+  -
+    host: "abc.com"
+    # if path is not present, will default to any path
+    casename: "example-null-001" # required
+    filepath: "example2.js" # keys other then "host", "path", "casename" will be ignored so you can use the same yaml file for baseline and case configuration
+  -
+    host: "abcd.com"
+    # if path is not present, will default to any path
+    casename: "example-middle-011" # required
+
