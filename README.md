@@ -131,10 +131,10 @@ To get a local copy up and running follow these simple steps.
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-There are two scripts of interest: [_output_cases.py_](htmlmth/output_cases.py) and [_EvasionHTTPServer.py_](htmlmth/EvasionHTTPServer.py)
+There are three scripts of interest: [_output_cases.py_](htmlmth/output_cases.py), [_EvasionHTTPServer.py_](htmlmth/EvasionHTTPServer.py), and  [_scripting_encoder_server.py_](htmlmth/scripting_encoder_server.py)
 
 
-*EvasionHTTPServer.py*
+**EvasionHTTPServer.py**
 
 This script implements the HTTP server that applies lists of evasions (AKA "cases") dynamically.
 
@@ -158,7 +158,7 @@ EvasionHTTPServer Usage Example 2
 python htmlmth/EvasionHTTPServer.py -i 0.0.0.0 -p 8000 -ipv 4 -sesh 127.0.0.1 -sesp 5000 -b baselines/example3.yaml -c cases/example.py -tc cases/example3.yaml
 ```
 
-Host an Evasion HTTP server instance on 0.0.0.0:8000 that hosts the basesline HTTP resources defined in [_baselines/example3.yaml_](baselines/example3.yam;) as the baseline contents and uses the cases listed in [*cases/example3.yaml*](https://github.com/CreatePhotonW/htmlmth/blob/main/cases/example3.yaml) and defined in [*cases/example.py*](https://github.com/CreatePhotonW/htmlmth/blob/main/cases/example.py#L14) as the applied evasions.
+Host an Evasion HTTP server instance on 0.0.0.0:8000 that hosts the baseline HTTP resources defined in [_baselines/example3.yaml_](baselines/example3.yam;) as the baseline contents and uses the cases listed in [*cases/example3.yaml*](https://github.com/CreatePhotonW/htmlmth/blob/main/cases/example3.yaml) and defined in [*cases/example.py*](https://github.com/CreatePhotonW/htmlmth/blob/main/cases/example.py#L14) as the applied evasions.
 
 When http://SERVERIP:8000/example.html is visited, the returned content should be the baseline with the following modifications (example-middle-011):
 
@@ -169,7 +169,7 @@ When http://abc.com:8000/ is visited (where abc.com points to SERVERIP), the ret
 1. No modifications
 
 
-*output_cases.py*
+**output_cases.py**
 
 This script serializes evaded content to disk.
 
@@ -179,7 +179,17 @@ output_cases Usage Example 1
 rm -r out ; mkdir out ; ./htmlmth/output_cases.py -sesp 5000 -sesh 127.0.0.1 -sesp 5000 -o out -b baselines/example3.yaml -c cases/example.py -bch abc.com -ld
 ```
 
-Serialize the evaded content for  to the _out_ directory using the baseline HTTP resources defined in [_baselines/example3.yaml_](baselines/example3.yaml) as the baseline contents and all the cases defined in [*cases/example.py*](https://github.com/CreatePhotonW/htmlmth/blob/main/cases/example.py#L14) as the applied evasions. Content is served up as if it were accessed using the hostname *abc.com*. Long descriptions will be printed to stdout.
+Serialize the evaded content to the _out_ directory using the baseline HTTP resources defined in [_baselines/example3.yaml_](baselines/example3.yaml) as the baseline contents and all the cases defined in [*cases/example.py*](https://github.com/CreatePhotonW/htmlmth/blob/main/cases/example.py#L14) as the applied evasions. Content is served up as if it were accessed using the hostname *abc.com*. Long descriptions will be printed to stdout.
+
+
+**scripting_encoder_server.py**
+
+Some evasions utilize a closed encoder by Microsoft. This script acts as a server that uses the encoder to return back encoded content. The server is required by some evasions to generate the evaded content. This script must run on a Windows host accessible from the machine running *output_cases.py* or *EvasionHTTPServer.py*.
+
+When using *output_cases.py* or *EvasionHTTPServer.py*, specify the ip (using the **-sesh** parameter) and the port (using the **-sesp** parameter) that the script is listening on. The default port is 5000.  
+
+If an evasion uses scripting_encoder_server.py and it is not accessible, a requests.exceptions.ConnectionError will occur.
+
 
 _To see the available evasions, please refer to the [evasions](htmlmth/evasions) directory._
 
