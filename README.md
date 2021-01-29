@@ -190,6 +190,11 @@ When using *output_cases.py* or *EvasionHTTPServer.py*, specify the ip (using th
 
 If an evasion uses scripting_encoder_server.py and it is not accessible, a requests.exceptions.ConnectionError will occur.
 
+```bash
+python.exe -m pip install flask
+set FLASK_APP=scripting_encoder_server.py
+python.exe -m flask run --host=0.0.0.0
+```
 
 _To see the available evasions, please refer to the [evasions](htmlmth/evasions) directory._
 
