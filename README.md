@@ -7,7 +7,7 @@
 ***
 ***
 *** To avoid retyping too much info. Do a search and replace for the following:
-*** CreatePhotonW, htmlmth, @CreatePhotonW, email, HTMLMTH, Web server that applies HTML & HTTP evasions dynamically
+*** ZwCreatePhoton, htmlmth, @ZwCreatePhoton, email, HTMLMTH, Web server that applies HTML & HTTP evasions dynamically
 -->
 
 
@@ -33,7 +33,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://github.com/CreatePhotonW/htmlmth">
+  <a href="https://github.com/ZwCreatePhoton/htmlmth">
 <!--    <img src="images/logo.png" alt="Logo" width="80" height="80"> -->
   </a>
 
@@ -42,16 +42,16 @@
   <p align="center">
     Web server that applies HTML & HTTP evasions dynamically
     <br />
-<!--    <a href="https://github.com/CreatePhotonW/htmlmth"><strong>Explore the docs »</strong></a> -->
+<!--    <a href="https://github.com/ZwCreatePhoton/htmlmth"><strong>Explore the docs »</strong></a> -->
     <br />
     <br />
     <!--
-    <a href="https://github.com/CreatePhotonW/htmlmth">View Demo</a>
+    <a href="https://github.com/ZwCreatePhoton/htmlmth">View Demo</a>
     ·
     -->
-    <a href="https://github.com/CreatePhotonW/htmlmth/issues">Report Bug</a>
+    <a href="https://github.com/ZwCreatePhoton/htmlmth/issues">Report Bug</a>
     ·
-    <a href="https://github.com/CreatePhotonW/htmlmth/issues">Request Feature</a>
+    <a href="https://github.com/ZwCreatePhoton/htmlmth/issues">Request Feature</a>
   </p>
 </p>
 
@@ -125,7 +125,7 @@ To get a local copy up and running follow these simple steps.
    ```
 3. Clone the repo
    ```sh
-   git clone https://github.com/CreatePhotonW/HTMLMTH.git
+   git clone https://github.com/ZwCreatePhoton/HTMLMTH.git
    ```
 
 <!-- USAGE EXAMPLES -->
@@ -144,7 +144,7 @@ EvasionHTTPServer Usage Example 1
 python htmlmth/EvasionHTTPServer.py -i 0.0.0.0 -p 8000 -ipv 4 -sesh 127.0.0.1 -sesp 5000 -b baselines/example.html -c cases/example.py -tc example-middle-011
 ```
 
-Host an Evasion HTTP server instance on 0.0.0.0:8000 that hosts the file [_baselines/example3.html_](baselines/example3.html) as the baseline content and uses the case [*example-middle-011* from cases/example.py](https://github.com/CreatePhotonW/htmlmth/blob/main/cases/example.py#L15) as the applied evasion.
+Host an Evasion HTTP server instance on 0.0.0.0:8000 that hosts the file [_baselines/example3.html_](baselines/example3.html) as the baseline content and uses the case [*example-middle-011* from cases/example.py](https://github.com/ZwCreatePhoton/htmlmth/blob/main/cases/example.py#L15) as the applied evasion.
 
 When http://SERVERIP:8000/ is visited, the returned content should be the baseline with the following modifications (example-middle-011):
 
@@ -158,7 +158,7 @@ EvasionHTTPServer Usage Example 2
 python htmlmth/EvasionHTTPServer.py -i 0.0.0.0 -p 8000 -ipv 4 -sesh 127.0.0.1 -sesp 5000 -b baselines/example3.yaml -c cases/example.py -tc cases/example3.yaml
 ```
 
-Host an Evasion HTTP server instance on 0.0.0.0:8000 that hosts the baseline HTTP resources defined in [_baselines/example3.yaml_](baselines/example3.yam;) as the baseline contents and uses the cases listed in [*cases/example3.yaml*](https://github.com/CreatePhotonW/htmlmth/blob/main/cases/example3.yaml) and defined in [*cases/example.py*](https://github.com/CreatePhotonW/htmlmth/blob/main/cases/example.py#L14) as the applied evasions.
+Host an Evasion HTTP server instance on 0.0.0.0:8000 that hosts the baseline HTTP resources defined in [_baselines/example3.yaml_](baselines/example3.yam;) as the baseline contents and uses the cases listed in [*cases/example3.yaml*](https://github.com/ZwCreatePhoton/htmlmth/blob/main/cases/example3.yaml) and defined in [*cases/example.py*](https://github.com/ZwCreatePhoton/htmlmth/blob/main/cases/example.py#L14) as the applied evasions.
 
 When http://SERVERIP:8000/example.html is visited, the returned content should be the baseline with the following modifications (example-middle-011):
 
@@ -179,7 +179,7 @@ output_cases Usage Example 1
 rm -r out ; mkdir out ; ./htmlmth/output_cases.py -sesp 5000 -sesh 127.0.0.1 -sesp 5000 -o out -b baselines/example3.yaml -c cases/example.py -bch abc.com -ld
 ```
 
-Serialize the evaded content to the _out_ directory using the baseline HTTP resources defined in [_baselines/example3.yaml_](baselines/example3.yaml) as the baseline contents and all the cases defined in [*cases/example.py*](https://github.com/CreatePhotonW/htmlmth/blob/main/cases/example.py#L14) as the applied evasions. Content is served up as if it were accessed using the hostname *abc.com*. Long descriptions will be printed to stdout.
+Serialize the evaded content to the _out_ directory using the baseline HTTP resources defined in [_baselines/example3.yaml_](baselines/example3.yaml) as the baseline contents and all the cases defined in [*cases/example.py*](https://github.com/ZwCreatePhoton/htmlmth/blob/main/cases/example.py#L14) as the applied evasions. Content is served up as if it were accessed using the hostname *abc.com*. Long descriptions will be printed to stdout.
 
 
 **scripting_encoder_server.py**
@@ -198,14 +198,14 @@ python.exe -m flask run --host=0.0.0.0
 
 _To see the available evasions, please refer to the [evasions](htmlmth/evasions) directory._
 
-_To see practical examples of cases, please refer to the [HtmlmthCases](https://github.com/CreatePhotonW/htmlmthcases) repo._
+_To see practical examples of cases, please refer to the [HtmlmthCases](https://github.com/ZwCreatePhoton/htmlmthcases) repo._
 
 
 
 <!-- ROADMAP -->
 ## Roadmap
 
-See the [open issues](https://github.com/CreatePhotonW/htmlmth/issues) for a list of proposed features (and known issues).
+See the [open issues](https://github.com/ZwCreatePhoton/htmlmth/issues) for a list of proposed features (and known issues).
 
 
 
@@ -232,23 +232,23 @@ Distributed under the MIT License. See `LICENSE` for more information.
 <!-- CONTACT -->
 ## Contact
 
-CreatePhotonW - [@CreatePhotonW](https://twitter.com/CreatePhotonW)
+ZwCreatePhoton - [@ZwCreatePhoton](https://twitter.com/ZwCreatePhoton)
 
-Project Link: [https://github.com/CreatePhotonW/htmlmth](https://github.com/CreatePhotonW/htmlmth)
+Project Link: [https://github.com/ZwCreatePhoton/htmlmth](https://github.com/ZwCreatePhoton/htmlmth)
 
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/CreatePhotonW/repo.svg?style=for-the-badge
-[contributors-url]: https://github.com/CreatePhotonW/repo/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/CreatePhotonW/repo.svg?style=for-the-badge
-[forks-url]: https://github.com/CreatePhotonW/repo/network/members
-[stars-shield]: https://img.shields.io/github/stars/CreatePhotonW/repo.svg?style=for-the-badge
-[stars-url]: https://github.com/CreatePhotonW/repo/stargazers
-[issues-shield]: https://img.shields.io/github/issues/CreatePhotonW/repo.svg?style=for-the-badge
-[issues-url]: https://github.com/CreatePhotonW/repo/issues
-[license-shield]: https://img.shields.io/github/license/CreatePhotonW/repo.svg?style=for-the-badge
-[license-url]: https://github.com/CreatePhotonW/repo/blob/master/LICENSE.txt
+[contributors-shield]: https://img.shields.io/github/contributors/ZwCreatePhoton/repo.svg?style=for-the-badge
+[contributors-url]: https://github.com/ZwCreatePhoton/repo/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/ZwCreatePhoton/repo.svg?style=for-the-badge
+[forks-url]: https://github.com/ZwCreatePhoton/repo/network/members
+[stars-shield]: https://img.shields.io/github/stars/ZwCreatePhoton/repo.svg?style=for-the-badge
+[stars-url]: https://github.com/ZwCreatePhoton/repo/stargazers
+[issues-shield]: https://img.shields.io/github/issues/ZwCreatePhoton/repo.svg?style=for-the-badge
+[issues-url]: https://github.com/ZwCreatePhoton/repo/issues
+[license-shield]: https://img.shields.io/github/license/ZwCreatePhoton/repo.svg?style=for-the-badge
+[license-url]: https://github.com/ZwCreatePhoton/repo/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/CreatePhotonW
+[linkedin-url]: https://linkedin.com/in/ZwCreatePhoton
