@@ -136,7 +136,7 @@ There are three scripts of interest: [_output_cases.py_](htmlmth/output_cases.py
 
 **EvasionHTTPServer.py**
 
-This script implements the HTTP server that applies lists of evasions (AKA "cases") dynamically.
+This script implements the HTTP(S) server that applies lists of evasions (AKA "cases") dynamically.
 
 EvasionHTTPServer Usage Example 1
 
