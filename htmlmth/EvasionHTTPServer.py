@@ -3,6 +3,7 @@ import socket, sys, os, SocketServer
 import importlib
 import argparse
 from collections import OrderedDict
+import ssl
 
 package_path = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
 sys.path.append(package_path)
@@ -12,7 +13,7 @@ from htmlmth.utils import TransformFunctionArgument, MIME_TYPE_MAP, IsYaml, Pars
 class EvasionHTTPServer(SocketServer.ThreadingTCPServer):
     allow_reuse_address = True
 
-    def __init__(self, server_address, baseline, cases, address_family=socket.AF_INET, test_case=None):
+    def __init__(self, server_address, baseline, cases, address_family=socket.AF_INET, test_case=None, keyfile=None, certfile=None):
         # TODO: assume cases is OrderedDict and remove upgrading cases to a OrderedDict in a future revision (a)
         if isinstance(cases, TransformFunction):
             cases = OrderedDict([cases.name, cases])
@@ -89,6 +90,8 @@ class EvasionHTTPServer(SocketServer.ThreadingTCPServer):
 
         EvasionHTTPServer.address_family = address_family
         SocketServer.ThreadingTCPServer.__init__(self, server_address, EvasionHTTPRequestHandler)
+        if keyfile is not None and certfile is not None:
+            self.socket = ssl.wrap_socket(self.socket, keyfile=keyfile, certfile=certfile, server_side=True)
 
 
 class EvasionHTTPRequestHandler(SocketServer.BaseRequestHandler):
@@ -168,6 +171,11 @@ if __name__ == '__main__':
                         help='ip of server running "scripting_encoder_server.py" # needed for evasions.html.encoded_script ; if that evasion is not used enter anything')
     parser.add_argument('-sesp', '--scriptencodeserverport', required=True, type=int,
                         help='port of server running "scripting_encoder_server.py" # needed for evasions.html.encoded_script ; if that evasion is not used enter anything')
+    parser.add_argument('-k', '--key', required=False, type=str, default=None,
+                        help='Path to a key file to use for SSL. Use this argument to enable SSL.')
+    parser.add_argument('-ct', '--cert', required=False, type=str, default=None,
+                        help='Path to a cert file to use for SSL. Use this argument to enable SSL.')
+
     args = parser.parse_args()
 
 
@@ -178,6 +186,8 @@ if __name__ == '__main__':
     test_case = args.testcase
     script_encoder_server = args.scriptencodeserverhost # ip of server running "scripting_encoder_server.py" # needed for evasions.html.encoded_vbscript
     script_encoder_port = args.scriptencodeserverport # port of server running "scripting_encoder_server.py" # needed for evasions.html.encoded_vbscript
+    key = args.key
+    cert = args.cert
     import evasions.html
     evasions.html.encoded_script.SCRIPTING_ENCODER_SERVER = script_encoder_server
     evasions.html.encoded_script.SCRIPTING_ENCODER_PORT = script_encoder_port
@@ -194,7 +204,7 @@ if __name__ == '__main__':
 
     af = socket.AF_INET6 if "6" in ipver else socket.AF_INET
 
-    server = EvasionHTTPServer((host, port), baseline, cases, address_family=af, test_case=test_case)
+    server = EvasionHTTPServer((host, port), baseline, cases, address_family=af, test_case=test_case, keyfile=key, certfile=cert)
 
     print("\n\n\t\tHosting...\n\n")
 
