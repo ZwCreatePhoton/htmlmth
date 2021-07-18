@@ -119,13 +119,13 @@ To get a local copy up and running follow these simple steps.
    ```sh
    sudo apt install libtidy-dev
    ```
-2. Install python requirements
-   ```sh
-   python -m pip install --ignore-installed -r requirements.txt
-   ```
-3. Clone the repo
+2. Clone the repo
    ```sh
    git clone https://github.com/ZwCreatePhoton/HTMLMTH.git
+   ```
+3. Install python requirements
+   ```sh
+   python -m pip install --ignore-installed -r requirements.txt
    ```
 
 <!-- USAGE EXAMPLES -->
