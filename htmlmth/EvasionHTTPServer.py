@@ -140,9 +140,11 @@ class EvasionHTTPRequestHandler(SocketServer.BaseRequestHandler):
 
         if hosted_file is not None:
             response = hosted_file.metadata.http.headers + hosted_file.metadata.http.body
-            csock.sendall(response)
         else:
-            csock.sendall(self.__class__.RESPONSE_404)
+            response = self.__class__.RESPONSE_404
+        csock.sendall(response)
+        status_line = response.split("\r\n")[0]
+        print("[+] {}:{} -> {}{} - {}".format(self.client_address[0], self.client_address[1], host, path, status_line))
 
     def finish(self):
         self.request.shutdown(socket.SHUT_RDWR)
