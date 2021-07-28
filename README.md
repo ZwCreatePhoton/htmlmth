@@ -141,10 +141,10 @@ This script implements the HTTP(S) server that applies lists of evasions (AKA "c
 EvasionHTTPServer Usage Example 1
 
 ```sh
-python htmlmth/EvasionHTTPServer.py -i 0.0.0.0 -p 8000 -ipv 4 -sesh 127.0.0.1 -sesp 5000 -b baselines/example.html -c cases/example.py -tc example-middle-011
+python htmlmth/EvasionHTTPServer.py -i 0.0.0.0 -p 8000 -ipv 4 -sesh 127.0.0.1 -sesp 5000 -b examples/baselines/example.html -c examples/cases/example.py -tc example-middle-011
 ```
 
-Host an Evasion HTTP server instance on 0.0.0.0:8000 that hosts the file [_baselines/example3.html_](baselines/example3.html) as the baseline content and uses the case [*example-middle-011* from cases/example.py](https://github.com/ZwCreatePhoton/htmlmth/blob/main/cases/example.py#L15) as the applied evasion.
+Host an Evasion HTTP server instance on 0.0.0.0:8000 that hosts the file [_examples/baselines/example3.html_](examples/examples/baselines/example3.html) as the baseline content and uses the case [*example-middle-011* from examples/cases/example.py](https://github.com/ZwCreatePhoton/htmlmth/blob/main/examples/cases/example.py#L15) as the applied evasion.
 
 When http://SERVERIP:8000/ is visited, the returned content should be the baseline with the following modifications (example-middle-011):
 
@@ -155,10 +155,10 @@ When http://SERVERIP:8000/ is visited, the returned content should be the baseli
 EvasionHTTPServer Usage Example 2
 
 ```sh
-python htmlmth/EvasionHTTPServer.py -i 0.0.0.0 -p 8000 -ipv 4 -sesh 127.0.0.1 -sesp 5000 -b baselines/example3.yaml -c cases/example.py -tc cases/example3.yaml
+python htmlmth/EvasionHTTPServer.py -i 0.0.0.0 -p 8000 -ipv 4 -sesh 127.0.0.1 -sesp 5000 -b examples/baselines/example3.yaml -c examples/cases/example.py -tc examples/cases/example3.yaml
 ```
 
-Host an Evasion HTTP server instance on 0.0.0.0:8000 that hosts the baseline HTTP resources defined in [_baselines/example3.yaml_](baselines/example3.yam;) as the baseline contents and uses the cases listed in [*cases/example3.yaml*](https://github.com/ZwCreatePhoton/htmlmth/blob/main/cases/example3.yaml) and defined in [*cases/example.py*](https://github.com/ZwCreatePhoton/htmlmth/blob/main/cases/example.py#L14) as the applied evasions.
+Host an Evasion HTTP server instance on 0.0.0.0:8000 that hosts the baseline HTTP resources defined in [_examples/baselines/example3.yaml_](examples/examples/baselines/example3.yam;) as the baseline contents and uses the cases listed in [*examples/cases/example3.yaml*](https://github.com/ZwCreatePhoton/htmlmth/blob/main/examples/cases/example3.yaml) and defined in [*examples/cases/example.py*](https://github.com/ZwCreatePhoton/htmlmth/blob/main/examples/cases/example.py#L14) as the applied evasions.
 
 When http://SERVERIP:8000/example.html is visited, the returned content should be the baseline with the following modifications (example-middle-011):
 
@@ -176,10 +176,10 @@ This script serializes evaded content to disk.
 output_cases Usage Example 1
 
 ```sh
-rm -r out ; mkdir out ; ./htmlmth/output_cases.py -sesp 5000 -sesh 127.0.0.1 -sesp 5000 -o out -b baselines/example3.yaml -c cases/example.py -bch abc.com -ld
+rm -r out ; mkdir out ; ./htmlmth/output_cases.py -sesp 5000 -sesh 127.0.0.1 -sesp 5000 -o out -b examples/baselines/example3.yaml -c examples/cases/example.py -bch abc.com -ld
 ```
 
-Serialize the evaded content to the _out_ directory using the baseline HTTP resources defined in [_baselines/example3.yaml_](baselines/example3.yaml) as the baseline contents and all the cases defined in [*cases/example.py*](https://github.com/ZwCreatePhoton/htmlmth/blob/main/cases/example.py#L14) as the applied evasions. Content is served up as if it were accessed using the hostname *abc.com*. Long descriptions will be printed to stdout.
+Serialize the evaded content to the _out_ directory using the baseline HTTP resources defined in [_examples/baselines/example3.yaml_](examples/examples/baselines/example3.yaml) as the baseline contents and all the cases defined in [*examples/cases/example.py*](https://github.com/ZwCreatePhoton/htmlmth/blob/main/examples/cases/example.py#L14) as the applied evasions. Content is served up as if it were accessed using the hostname *abc.com*. Long descriptions will be printed to stdout.
 
 
 **scripting_encoder_server.py**
