@@ -67,13 +67,10 @@
     <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
   </ol>
@@ -107,26 +104,20 @@ HTMLMTH is a web server that applies HTML & HTTP evasions dynamically to outgoin
 
 To get a local copy up and running follow these simple steps.
 
-### Prerequisites
-
-* Python2
-* libtidy-dev
-
-
 ### Installation
 
-1. Install libtidy-dev
-   ```sh
-   sudo apt install libtidy-dev
-   ```
-2. Clone the repo
-   ```sh
-   git clone https://github.com/ZwCreatePhoton/HTMLMTH.git
-   ```
-3. Install python requirements
-   ```sh
-   python -m pip install --ignore-installed -r requirements.txt
-   ```
+```bash
+sudo apt update
+sudo apt install -y libtidy-dev
+sudo apt install -y git
+git clone git@github.com:ZwCreatePhoton/htmlmth.git
+sudo apt install -y curl
+sudo apt install -y python2.7
+curl https://bootstrap.pypa.io/pip/2.7/get-pip.py | python2.7
+python2.7 -m pip install virtualenv
+python2.7 -m virtualenv venv_htmlmth
+./venv_htmlmth/bin/python2 -m pip install --ignore-installed -r htmlmth/requirements.txt 
+```
 
 <!-- USAGE EXAMPLES -->
 ## Usage
@@ -140,8 +131,8 @@ This script implements the HTTP(S) server that applies lists of evasions (AKA "c
 
 EvasionHTTPServer Usage Example 1
 
-```sh
-python htmlmth/EvasionHTTPServer.py -i 0.0.0.0 -p 8000 -ipv 4 -sesh 127.0.0.1 -sesp 5000 -b examples/baselines/example.html -c examples/cases/example.py -tc example-middle-011
+```bash
+./venv_htmlmth/bin/python2 htmlmth/htmlmth/EvasionHTTPServer.py -i 0.0.0.0 -p 8000 -ipv 4 -sesh 127.0.0.1 -sesp 5000 -b htmlmth/examples/baselines/example.html -c htmlmth/examples/cases/example.py -tc example-middle-011
 ```
 
 Host an Evasion HTTP server instance on 0.0.0.0:8000 that hosts the file [_examples/baselines/example3.html_](examples/examples/baselines/example3.html) as the baseline content and uses the case [*example-middle-011* from examples/cases/example.py](https://github.com/ZwCreatePhoton/htmlmth/blob/main/examples/cases/example.py#L15) as the applied evasion.
@@ -154,8 +145,8 @@ When http://SERVERIP:8000/ is visited, the returned content should be the baseli
 
 EvasionHTTPServer Usage Example 2
 
-```sh
-python htmlmth/EvasionHTTPServer.py -i 0.0.0.0 -p 8000 -ipv 4 -sesh 127.0.0.1 -sesp 5000 -b examples/baselines/example3.yaml -c examples/cases/example.py -tc examples/cases/example3.yaml
+```bash
+./venv_htmlmth/bin/python2 htmlmth/htmlmth/EvasionHTTPServer.py -i 0.0.0.0 -p 8000 -ipv 4 -sesh 127.0.0.1 -sesp 5000 -b htmlmth/examples/baselines/example3.yaml -c htmlmth/examples/cases/example.py -tc htmlmth/examples/cases/example3.yaml
 ```
 
 Host an Evasion HTTP server instance on 0.0.0.0:8000 that hosts the baseline HTTP resources defined in [_examples/baselines/example3.yaml_](examples/examples/baselines/example3.yam;) as the baseline contents and uses the cases listed in [*examples/cases/example3.yaml*](https://github.com/ZwCreatePhoton/htmlmth/blob/main/examples/cases/example3.yaml) and defined in [*examples/cases/example.py*](https://github.com/ZwCreatePhoton/htmlmth/blob/main/examples/cases/example.py#L14) as the applied evasions.
@@ -175,8 +166,8 @@ This script serializes evaded content to disk.
 
 output_cases Usage Example 1
 
-```sh
-rm -r out ; mkdir out ; ./htmlmth/output_cases.py -sesp 5000 -sesh 127.0.0.1 -sesp 5000 -o out -b examples/baselines/example3.yaml -c examples/cases/example.py -bch abc.com -ld
+```bash
+rm -r out ; mkdir out ; ./venv_htmlmth/bin/python2 htmlmth/htmlmth/output_cases.py -sesp 5000 -sesh 127.0.0.1 -sesp 5000 -o out -b htmlmth/examples/baselines/example3.yaml -c htmlmth/examples/cases/example.py -bch abc.com -ld
 ```
 
 Serialize the evaded content to the _out_ directory using the baseline HTTP resources defined in [_examples/baselines/example3.yaml_](examples/examples/baselines/example3.yaml) as the baseline contents and all the cases defined in [*examples/cases/example.py*](https://github.com/ZwCreatePhoton/htmlmth/blob/main/examples/cases/example.py#L14) as the applied evasions. Content is served up as if it were accessed using the hostname *abc.com*. Long descriptions will be printed to stdout.
@@ -184,7 +175,7 @@ Serialize the evaded content to the _out_ directory using the baseline HTTP reso
 
 **scripting_encoder_server.py**
 
-Some evasions utilize a closed encoder by Microsoft. This script acts as a server that uses the encoder to return back encoded content. The server is required by some evasions to generate the evaded content. This script must run on a Windows host accessible from the machine running *output_cases.py* or *EvasionHTTPServer.py*.
+Some evasions utilize a closed source vbscript/jscript encoder by Microsoft. This script acts as a server that uses the encoder to return back encoded content. The server is required by some evasions to generate the evaded content. This script must run on a Windows host accessible from the machine running *output_cases.py* or *EvasionHTTPServer.py*.
 
 When using *output_cases.py* or *EvasionHTTPServer.py*, specify the ip (using the **-sesh** parameter) and the port (using the **-sesp** parameter) that the script is listening on. The default port is 5000.  
 
@@ -199,26 +190,6 @@ python.exe -m flask run --host=0.0.0.0
 _To see the available evasions, please refer to the [evasions](htmlmth/evasions) directory._
 
 _To see practical examples of cases, please refer to the [HtmlmthCases](https://github.com/ZwCreatePhoton/htmlmthcases) repo._
-
-
-
-<!-- ROADMAP -->
-## Roadmap
-
-See the [open issues](https://github.com/ZwCreatePhoton/htmlmth/issues) for a list of proposed features (and known issues).
-
-
-
-<!-- CONTRIBUTING -->
-## Contributing
-
-Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
 
 
 
