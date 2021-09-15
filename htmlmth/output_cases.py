@@ -76,6 +76,7 @@ if __name__ == '__main__':
                 "casename": test_case
             }
             testcases.append(tc)
+    
 
     # apply cases
     for case in cases.values():
@@ -95,7 +96,8 @@ if __name__ == '__main__':
             case_arg.metadata.http.content_length_header = True
             case_arg.metadata.http.connection_header = True
             case_args.append(case_arg)
-
+        if not case_args:
+            continue
         root_dir = os.path.join(out_dir, case.name)
         try:
             os.mkdir(root_dir)
