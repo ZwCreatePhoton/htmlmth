@@ -1,3 +1,4 @@
 uTidylib==0.6
 PyYAML==5.3
 requests
+six
